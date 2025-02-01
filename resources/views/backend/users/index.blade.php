@@ -49,7 +49,9 @@
                             <th style="">Roles</th>
                             <th style="">Balance</th>
                             <th style="">Status</th>
+                            @role(['Super-Admin','Admin'])
                             <th style="">Action</th>
+                            @endrole
                         </tr>
                     </thead>
                     <tbody>
@@ -67,16 +69,25 @@
                                 </td>
                                 <td>{{ number_format((float)$user->wallet->balance, )}} Ks</td>
                                 <td><label class="badge bg-success"></label></td>
+                                @role(['Super-Admin','Admin'])
                                 <td>
-                                    <a class="btn btn-info btn-sm" href="{{ route('users.show',$user->id) }}"><i class="fa-solid fa-list"></i> Show</a>
-                                    <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->id) }}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                    @can('user-list')
+                                        <a class="btn btn-info btn-sm" href="{{ route('users.show',$user->id) }}"><i class="fa-solid fa-list"></i> Show</a>
+                                    @endcan
+                                    @can('user-edit')
+                                        <a class="btn btn-primary btn-sm" href="{{ route('users.edit',$user->id) }}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                    @endcan
+                                    @can('user-delete')
                                      <form method="POST" action="{{ route('users.destroy', $user->id) }}" style="display:inline">
                                          @csrf
                                          @method('DELETE')
 
                                          <button type="submit" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i> Delete</button>
                                      </form>
+                                    @endcan
+
                                 </td>
+                                @endrole
                             </tr>
                         @endforeach
 

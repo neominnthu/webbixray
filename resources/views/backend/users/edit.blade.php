@@ -26,7 +26,7 @@
         </div>
         <!--end::Header-->
         <!--begin::Form-->
-        <form action="" method="post">
+        <form action="{{route('users.update',$user->id)}}" method="post" enctype="multipart/form-data">
             @csrf
             @method('POST')
             <!--begin::Body-->
@@ -36,22 +36,19 @@
 
                         <div class="mb-3">
                             <label for="username" class="form-label">User name</label>
-                            <input type="text" class="form-control" id="username"  />
+                            <input type="text" class="form-control" id="username" name="name" value="{{$user->name}}"  />
 
                         </div>
 
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" />
+                            <input type="email" class="form-control" id="email" name="email" value="{{$user->email}}" aria-describedby="emailHelp" />
                             <div id="emailHelp" class="form-text">
                                 We'll never share your email with anyone else.
                             </div>
                         </div>
 
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" />
-                        </div>
+
 
                     </div>
 
@@ -59,7 +56,13 @@
 
 
                         <div class="input-group mb-3">
+                            @if ($user->getFirstMediaUrl('photos'))
+                               <img src="{{$user->getFirstMediaUrl('photos')}}" alt="profile-photo" class="img-size-700 me-3" style="width: 100px">
+
+                            @else
                             <img src="{{asset('')}}dist/assets/img/user2-160x160.jpg" alt="profile-photo" class="img-size-700 me-3" style="width: 100px">
+                            @endif
+
 
                         </div>
                         <div class="input-group mb-3">

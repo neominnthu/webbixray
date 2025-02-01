@@ -159,7 +159,7 @@
                   <!--begin::User Image-->
                   <li class="user-header text-bg-primary">
                     <img
-                      src="../../dist/assets/img/user2-160x160.jpg"
+                      src="{{asset('')}}dist/assets/img/user2-160x160.jpg"
                       class="rounded-circle shadow"
                       alt="User Image"
                     />
@@ -187,9 +187,9 @@
                   <!--end::Menu Body-->
                   <!--begin::Menu Footer-->
                   <li class="user-footer">
-                    <a href="{{route('profile')}}" class="btn btn-default btn-flat">Profile</a>
+                    <a href="{{route('profile')}}" class="btn btn-default btn-flat btn-outline btn-primary">Profile</a>
 
-                    <a href="{{ route('logout') }}" class="btn btn-default float-end" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <a href="{{ route('logout') }}" class="btn btn-default btn-flat btn-outline btn-primary float-end" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                         Logout
                     </a>
                     <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">

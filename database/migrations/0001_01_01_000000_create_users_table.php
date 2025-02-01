@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('user_level')->default(0);
+            $table->integer('trusted')->default(0);
+            //$table->string('photo')->nullable(); deprecated::
             $table->string('referral_code')->nullable();
             $table->rememberToken();
             $table->timestamps();
