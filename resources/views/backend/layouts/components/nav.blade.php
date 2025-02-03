@@ -147,13 +147,14 @@
               <!--end::Fullscreen Toggle-->
               <!--begin::User Menu Dropdown-->
               <li class="nav-item dropdown user-menu">
+
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                   <img
                     src="../../dist/assets/img/user2-160x160.jpg"
                     class="user-image rounded-circle shadow"
                     alt="User Image"
                   />
-                  <span class="d-none d-md-inline">Alexander Pierce</span>
+                  <span class="d-none d-md-inline">{{auth()->user()->name}}</span>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                   <!--begin::User Image-->
@@ -177,11 +178,12 @@
                   <!--begin::Menu Body-->
                   <li class="user-body">
                     <!--begin::Row-->
+                    <!--
                     <div class="row">
                       <div class="col-4 text-center"><a href="#">Followers</a></div>
                       <div class="col-4 text-center"><a href="#">Sales</a></div>
                       <div class="col-4 text-center"><a href="#">Friends</a></div>
-                    </div>
+                    </div> -->
                     <!--end::Row-->
                   </li>
                   <!--end::Menu Body-->
@@ -195,6 +197,7 @@
                     <form id="logout-form" method="POST" action="{{ route('logout') }}" style="display: none;">
                         @csrf
                     </form>
+
                   </li>
                   <!--end::Menu Footer-->
                 </ul>
@@ -202,5 +205,6 @@
               <!--end::User Menu Dropdown-->
             </ul>
             <!--end::End Navbar Links-->
+
           </div>
           <!--end::Container-->

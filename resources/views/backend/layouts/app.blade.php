@@ -3,7 +3,7 @@
   <!--begin::Head-->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>AdminLTE v4 | Dashboard</title>
+    <title>WebbixRay | @yield('title')</title>
     <!--begin::Primary Meta Tags-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="" />
@@ -14,6 +14,7 @@
     <!--end::Primary Meta Tags-->
     @include('backend.layouts.components.styles')
     @stack('custom-styles')
+
   </head>
   <!--end::Head-->
   <!--begin::Body-->
@@ -22,9 +23,11 @@
     <div class="app-wrapper">
       <!--begin::Header-->
       <nav class="app-header navbar navbar-expand bg-body">
+
         @include('backend.layouts.components.nav')
       </nav>
       <!--end::Header-->
+
       <!--begin::Sidebar-->
       <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
         <!--begin::Sidebar Brand-->
@@ -54,21 +57,26 @@
         <!--end::Sidebar Wrapper-->
       </aside>
       <!--end::Sidebar-->
+
       <!--begin::App Main-->
       <main class="app-main">
         <!--begin::App Content Header-->
         <div class="app-content-header">
           <!--begin::Container-->
           <div class="container-fluid">
+
             @include('backend.layouts.components.pageheader')
+
           </div>
           <!--end::Container-->
         </div>
         <!--end::App Content Header-->
+
         <!--begin::App Content-->
         <div class="app-content">
           <!--begin::Container-->
           <div class="container-fluid">
+
             @yield('content')
           </div>
           <!--end::Container-->
@@ -83,8 +91,12 @@
       <!--end::Footer-->
     </div>
     <!--end::App Wrapper-->
+
+
     @include('backend.layouts.components.scripts')
+
     @stack('custom-scripts')
+
 
   </body>
   <!--end::Body-->

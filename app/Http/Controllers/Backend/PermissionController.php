@@ -9,6 +9,8 @@ use Spatie\Permission\Models\Permission;
 use DB;
 use Illuminate\View\View;
 use Illuminate\Http\RedirectResponse;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class PermissionController extends Controller
 {
@@ -42,48 +44,80 @@ class PermissionController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         //
+        return view('backend.permissions.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
+
     {
-        //
+
+        $this->validate($request, [
+
+            'name' => 'required|unique:permissions,name',
+
+        ]);
+
+        $permission = Permission::create(['name' => $request->input('name')]);
+
+        return redirect()->route('permissions.index')->with('success','User updated successfully');
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id): View
+
     {
-        //
+
+        $permission = Permission::find($id);
+        return view('permissions.show',compact('permission'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
-    }
+    public function edit($id): View
 
+    {
+
+        $permission = Permission::find($id);
+        return view('permissions.edit',compact('permission'));
+
+    }
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function update(Request $request, $id): RedirectResponse
 
+    {
+
+        $this->validate($request, [
+            'name' => 'required',
+        ]);
+
+        $permission = Permission::find($id);
+        $permission->name = $request->input('name');
+        $permission->save();
+
+
+        return redirect()->route('permissions.index')->with('success','User updated successfully');
+
+    }
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Permission $permission)
     {
-        //
+        $permission->delete();
+        return redirect()->route('permissions.index')->with('success','User deleted successfully');
     }
 }
+

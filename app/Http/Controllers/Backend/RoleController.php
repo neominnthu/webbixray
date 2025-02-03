@@ -40,41 +40,82 @@ class RoleController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         //
+        $permission = Permission::get();
+        return view('backend.roles.create',compact('permission'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
+
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:roles,name',
+            'permission' => 'required',
+        ]);
+
+        $role = Role::create(['name' => $request->input('name')]);
+        $role->syncPermissions($request->input('permission'));
+        return redirect()->route('roles.index')->Sweetalert::success('Role has Been Created', 'Success');
+
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id): View
+
     {
-        //
+
+        $role = Role::find($id);
+        $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
+            ->where("role_has_permissions.role_id",$id)
+            ->get();
+        return view('roles.show',compact('role','rolePermissions'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id): View
+
     {
-        //
+
+        $role = Role::find($id);
+        $permission = Permission::get();
+        $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id",$id)
+            ->pluck('role_has_permissions.permission_id','role_has_permissions.permission_id')
+            ->all();
+        return view('roles.edit',compact('role','permission','rolePermissions'));
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id): RedirectResponse
+
     {
-        //
+
+        $this->validate($request, [
+            'name' => 'required',
+            'permission' => 'required',
+        ]);
+
+        $role = Role::find($id);
+        $role->name = $request->input('name');
+        $role->save();
+
+        $role->syncPermissions($request->input('permission'));
+
+        return redirect()->route('roles.index')
+                        ->Sweetalert::success('Role has Been Updated', 'Success');
+
     }
 
     /**
@@ -82,6 +123,7 @@ class RoleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        DB::table("roles")->where('id',$id)->delete();
+        return redirect()->route('roles.index')->Sweetalert::success('Role has Been Deleted', 'Success');
     }
 }

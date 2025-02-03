@@ -3,6 +3,13 @@
 
 
 <div class="register-box">
+
+    @if(session('success'))
+    <p style="color: green;">{{ session('success') }}</p>
+    @endif
+    @foreach ($errors->all() as $error)
+    <p style="color: red;">{{ $error }}</p>
+    @endforeach
     <!-- /.register-logo -->
     <div class="card card-outline card-primary">
       <div class="card-header">
@@ -12,25 +19,34 @@
       </div>
       <div class="card-body register-card-body">
         <p class="register-box-msg">Register a new membership</p>
-        <form action="#" method="post">
+        <form action="{{route('register')}}" method="post" enctype="multipart/form-data">
+            @csrf
+            @method('POST')
           <div class="input-group mb-1">
             <div class="form-floating">
-              <input id="registerFullName" type="text" class="form-control" placeholder="" />
-              <label for="registerFullName">Full Name</label>
+              <input id="username" type="text" class="form-control" placeholder="" name="name" />
+              <label for="username">Full Name</label>
             </div>
             <div class="input-group-text"><span class="bi bi-person"></span></div>
           </div>
           <div class="input-group mb-1">
             <div class="form-floating">
-              <input id="registerEmail" type="email" class="form-control" placeholder="" />
-              <label for="registerEmail">Email</label>
+              <input id="email" type="email" class="form-control" placeholder="" name="email" />
+              <label for="email">Email</label>
             </div>
             <div class="input-group-text"><span class="bi bi-envelope"></span></div>
           </div>
           <div class="input-group mb-1">
             <div class="form-floating">
-              <input id="registerPassword" type="password" class="form-control" placeholder="" />
-              <label for="registerPassword">Password</label>
+                <input type="text" class="form-control" name="referral_code" value="{{ request('ref') }}" placeholder="Referral Code (Optional)" >
+              <label for="referralCode">Referral Code</label>
+            </div>
+
+          </div>
+          <div class="input-group mb-1">
+            <div class="form-floating">
+              <input id="password" type="password" class="form-control" placeholder="" name="password"/>
+              <label for="password">Password</label>
             </div>
             <div class="input-group-text"><span class="bi bi-lock-fill"></span></div>
           </div>
@@ -54,6 +70,7 @@
           </div>
           <!--end::Row-->
         </form>
+        <!--
         <div class="social-auth-links text-center mb-3 d-grid gap-2">
           <p>- OR -</p>
           <a href="#" class="btn btn-primary">
@@ -62,10 +79,10 @@
           <a href="#" class="btn btn-danger">
             <i class="bi bi-google me-2"></i> Sign in using Google+
           </a>
-        </div>
+        </div> -->
         <!-- /.social-auth-links -->
         <p class="mb-0">
-          <a href="login.html" class="link-primary text-center"> I already have a membership </a>
+          <a href="{{route('login')}}" class="link-primary text-center"> I already have a membership </a>
         </p>
       </div>
       <!-- /.register-card-body -->

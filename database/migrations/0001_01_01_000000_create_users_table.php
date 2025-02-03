@@ -20,7 +20,10 @@ return new class extends Migration
             $table->integer('user_level')->default(0);
             $table->integer('trusted')->default(0);
             //$table->string('photo')->nullable(); deprecated::
-            $table->string('referral_code')->nullable();
+            $table->string('referral_code')->unique()->nullable();
+            $table->integer('reward_points')->default(0);
+            $table->unsignedBigInteger('referred_by')->nullable();
+            $table->foreign('referred_by')->references('id')->on('users')->onDelete('set null');
             $table->rememberToken();
             $table->timestamps();
         });

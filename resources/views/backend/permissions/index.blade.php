@@ -46,11 +46,11 @@
             <table class="table table-bordered table-responsive">
                 <thead>
                     <tr>
-                        <th style=""></th>
+                        <th style="">No</th>
                         <th style="">Permission Name</th>
                         <th style="">Guard</th>
 
-                        <th></th>
+                        <th style="">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,12 +59,12 @@
                             <td>{{ ++$i }}</td>
                             <td>{{$permission->name}}</td>
                             <td >{{$permission->guard_name}}</td>
-                            <td></td>
+
 
                             <td>
-                                <a class="btn btn-info btn-sm" href=""><i class="fa-solid fa-list"></i> Show</a>
-                                <a class="btn btn-primary btn-sm" href=""><i class="fa-solid fa-pen-to-square"></i> Edit</a>
-                                 <form method="POST" action="" style="display:inline">
+                                <a class="btn btn-info btn-sm" href="{{ route('permissions.destroy', $permission->id) }}"><i class="fa-solid fa-list"></i> Show</a>
+                                <a class="btn btn-primary btn-sm" href="{{ route('permissions.destroy', $permission->id) }}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
+                                 <form method="POST" action="{{ route('permissions.destroy', $permission->id) }}" style="display:inline">
                                      @csrf
                                      @method('DELETE')
 

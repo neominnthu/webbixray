@@ -28,6 +28,8 @@ class User extends Authenticatable implements HasMedia
         'name',
         'email',
         'password',
+        'referred_by',
+        'reward_points'
     ];
 
     /**
@@ -90,6 +92,16 @@ class User extends Authenticatable implements HasMedia
             $user->referral_code = Str::random(8);
             $user->save();
         });
+    }
+
+    public function referrer()
+    {
+        return $this->belongsTo(User::class, 'referred_by');
+    }
+
+    public function referrals()
+    {
+        return $this->hasMany(User::class, 'referred_by');
     }
 
     public function registerMediaConversions(?Media $media = null): void

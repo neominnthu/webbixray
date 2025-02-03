@@ -2,8 +2,8 @@
 <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
 <!--User Management-->
     @can(['user-list', 'role-list', 'permission-list'])
-        <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+        <li class="nav-item  {{ request()->is('permissions*') || request()->is('roles*') || request()->is('users*')   ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ request()->is('permissions*') || request()->is('roles*') || request()->is('users*')   ? 'menu-open' : '' }}">
             <i class="nav-icon bi bi-speedometer"></i>
             <p>
                 User Management
@@ -13,7 +13,7 @@
             <ul class="nav nav-treeview">
                 @can('role-list')
                 <li class="nav-item">
-                    <a href="{{route('roles.index')}}" class="nav-link active">
+                    <a href="{{route('roles.index')}}" class="nav-link {{request()->is('roles*')  ? 'active' : '' }}">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>Roles</p>
                     </a>
@@ -22,7 +22,7 @@
 
             @can('permission-list')
                 <li class="nav-item">
-                    <a href="{{route('permissions.index')}}" class="nav-link">
+                    <a href="{{route('permissions.index')}}" class="nav-link {{request()->is('permissions*')  ? 'active' : '' }}">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>Permissions</p>
                     </a>
@@ -30,7 +30,7 @@
             @endcan
                 @can('user-list')
                 <li class="nav-item">
-                    <a href="{{route('users.index')}}" class="nav-link">
+                    <a href="{{route('users.index')}}" class="nav-link {{request()->is('users*')  ? 'active' : '' }}">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>Users</p>
                     </a>

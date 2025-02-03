@@ -1,4 +1,5 @@
 @extends('backend.layouts.app')
+@section('title', 'Profile')
 
     <!-- Custom styles can be add here -->
         @push('custom-styles')
@@ -33,7 +34,12 @@
           <div class="card card-primary card-outline">
             <div class="card-body box-profile">
               <div class="text-center">
-                <img class="profile-user-img img-fluid img-circle" src="{{asset('/')}}assets/img/user4-128x128.jpg" alt="User profile picture">
+                @if (Auth::user()->getFirstMediaUrl('photos'))
+                <img src="{{Auth::user()->getFirstMediaUrl('photos')}}" alt="profile-photo" class="img-size-700 me-3" style="width: 100px">
+
+                @else
+                <img src="{{asset('')}}dist/assets/img/user2-160x160.jpg" alt="profile-photo" class="img-size-700 me-3" style="width: 100px">
+                @endif
               </div>
 
               <h3 class="profile-username text-center">{{Auth::user()->name}}</h3>
@@ -89,7 +95,7 @@
 
               <strong><i class="fas fa-map-marker-alt mr-1"></i> Total Rewards</strong>
 
-              <p class="text-muted">Total Referred users: x10P</p>
+              <p class="text-muted">Total Referred users:  <b>{{auth()->user()->referrals->count()}}</b>|| Total Reward points: <b>{{Auth::user()->reward_points}}</b></p>
 
               <hr>
 

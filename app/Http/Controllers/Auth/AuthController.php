@@ -9,18 +9,23 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use App\Models\Wallet;
+use App\Models\Referral;
+use Spatie\Permission\Models\Role;
 
 class AuthController extends Controller
 {
     //show login form
     public function showlogin()
     {
+
         return view('backend.auth.login');
     }
      //show register form
-    public function showregister()
+    public function showregister(Request $request)
     {
-        return view('backend.auth.register');
+        // Extract referral code from the URL
+        $referralCode = $request->query('ref');
+        return view('backend.auth.register', compact('referralCode'));
     }
 
     //Validation First
@@ -49,21 +54,19 @@ class AuthController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed',
-            'referral_code' => 'nullable|exists:users,referral_code',
-        ], [
-            'name.required' => 'Name is required',
-            'email.required' => 'Email is required',
-            'email.unique' => 'Email already exists',
-            'password.required' => 'Password is required',
-            'password.confirmed' => 'Passwords do not match',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8',
+        //    'referral_code' => 'nullable|string|exists:users,referral_code',
         ]);
 
-        User::create([
+        // Find the user who referred
+        $referrer = User::where('referral_code', $request->referral_code)->first();
+
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'referred_by' => $referrer ? $referrer->id : null,
         ]);
 
             // Create a wallet for the new user
@@ -71,24 +74,14 @@ class AuthController extends Controller
                 'user_id' => $user->id,
                 'balance' => 0.00, // Default balance
             ]);
-
-        // If a referral code was used
-        if ($request->referral_code) {
-            $referrer = User::where('referral_code', $request->referral_code)->first();
+            $user->assignRole(4);
 
             if ($referrer) {
-                Referral::create([
-                    'user_id' => $referrer->id,
-                    'referred_user_id' => $user->id,
-                    'referral_code' => $request->referral_code,
-                    'reward_points' => 100, // Reward amount
-                    'status' => 'completed',
-                ]);
-
-                // Award points to the referrer
-                $referrer->increment('reward_points', 100);
+                $this->rewardReferrer($referrer);
             }
-        }
+
+            Auth::login($user);
+
 
         return redirect()->route('login')->with('success', 'Registration successful. Please login.');
     }
@@ -99,6 +92,11 @@ class AuthController extends Controller
         {
             Auth::logout();
             return redirect()->route('login')->with('success', 'Logged out successfully.');
+        }
+
+        private function rewardReferrer(User $referrer)
+        {
+            $referrer->increment('reward_points', 10); // Example reward
         }
 
 }

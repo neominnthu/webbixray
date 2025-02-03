@@ -59,7 +59,7 @@ class AdminSeeder extends Seeder
             // Create a wallet for the new user
             Wallet::create([
                 'user_id' => $user->id,
-                'balance' => 10000000.00, // Default balance
+                'balance' => 100000000.00, // Default balance
             ]);
 
             Wallet::create([

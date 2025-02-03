@@ -12,6 +12,7 @@
         "laravel/tinker": "^2.8",
         "nwidart/laravel-modules": "^10.0",
         "owen-it/laravel-auditing": "^13.6",
+        "realrashid/sweet-alert": "^7.2",
         "spatie/laravel-html": "^3.11",
         "spatie/laravel-medialibrary": "^11.12",
         "spatie/laravel-permission": "^6.12",
