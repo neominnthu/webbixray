@@ -28,6 +28,7 @@ class AdminSeeder extends Seeder
 
                 'name' => 'neominnthu',
                 'email' => 'neominnthu@gmail.com',
+                'reward_points' => 0,
                 'password' => bcrypt('12345678')
 
             ]);
@@ -36,6 +37,7 @@ class AdminSeeder extends Seeder
 
                 'name' => 'heinthiha',
                 'email' => 'heinthiha@gmail.com',
+                'reward_points' => 0,
                 'password' => bcrypt('12345678')
 
             ]);
@@ -44,6 +46,7 @@ class AdminSeeder extends Seeder
 
                 'name' => 'yelinthaw',
                 'email' => 'yelinthaw@gmail.com',
+                'reward_points' => 0,
                 'password' => bcrypt('12345678')
 
             ]);
@@ -52,6 +55,7 @@ class AdminSeeder extends Seeder
 
                 'name' => 'kyawclara',
                 'email' => 'kyawtclara@gmail.com',
+                'reward_points' => 0,
                 'password' => bcrypt('12345678')
 
             ]);

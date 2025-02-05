@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('wallet_transactions', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->decimal('amount', 10, 2);
-            $table->enum('type', ['credit', 'debit']);
-            $table->string('description')->nullable();
-            $table->decimal('fee', 15, 2);
+            $table->foreignId('wallet_id')->constrained('wallets')->onDelete('cascade');
+            $table->enum('type', ['deposit', 'withdrawal', 'transfer']);
+            $table->decimal('amount', 15, 2);
+            $table->text('description')->nullable();
+            $table->unsignedBigInteger('recipient_wallet_id')->nullable();
             $table->timestamps();
         });
     }

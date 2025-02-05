@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->decimal('reward', 10, 2);
+            $table->enum('type', ['daily', 'weekly','monthly','event','partner'])->default('daily');
+            $table->decimal('reward', 10, 2)->default(10);
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });

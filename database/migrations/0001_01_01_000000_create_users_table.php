@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('trusted')->default(0);
             //$table->string('photo')->nullable(); deprecated::
             $table->string('referral_code')->unique()->nullable();
-            $table->integer('reward_points')->default(0);
+            $table->string('reward_points')->default(0);
             $table->unsignedBigInteger('referred_by')->nullable();
             $table->foreign('referred_by')->references('id')->on('users')->onDelete('set null');
             $table->rememberToken();

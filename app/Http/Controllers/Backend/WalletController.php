@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Wallet;
 use App\Models\WalletTransaction;
 use Illuminate\Http\Request;
@@ -9,55 +11,15 @@ use Illuminate\Support\Facades\Auth;
 
 class WalletController extends Controller
 {
-    // Show wallet balance
-    public function index()
+    private $transferFeePercentage = 2; // 2% fee on transfers
+    private $withdrawalFee = 1.00; // Fixed $1 fee on withdrawals
+    // Show Wallet Dashboard
+    public function index(Request $request)
     {
         $wallet = Auth::user()->wallet;
-        $transactions = WalletTransaction::where('user_id', Auth::id())->latest()->get();
-
-        return view('backend.wallet.index', compact('wallet', 'transactions'));
+        $transactions = $wallet ? $wallet->transactions()->latest()->get() : [];
+        return view('backend.wallets.index', compact('wallet','transactions')) ->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
-    // Add funds to the wallet
-    public function addFunds(Request $request)
-    {
-        $request->validate(['amount' => 'required|numeric|min:1']);
-
-        $wallet = Auth::user()->wallet;
-        $wallet->increment('balance', $request->amount);
-
-        WalletTransaction::create([
-            'user_id' => Auth::id(),
-            'amount' => $request->amount,
-            'type' => 'credit',
-            'description' => 'Wallet top-up',
-        ]);
-
-        return redirect()->back()->with('success', 'Funds added successfully!');
-    }
-
-
-    // Use wallet funds for purchases
-    public function useFunds(Request $request)
-    {
-        $request->validate(['amount' => 'required|numeric|min:1']);
-
-        $wallet = Auth::user()->wallet;
-
-        if ($wallet->balance < $request->amount) {
-            return redirect()->back()->with('error', 'Insufficient funds!');
-        }
-
-        $wallet->decrement('balance', $request->amount);
-
-        WalletTransaction::create([
-            'user_id' => Auth::id(),
-            'amount' => $request->amount,
-            'type' => 'debit',
-            'description' => 'Wallet payment for order',
-        ]);
-
-        return redirect()->back()->with('success', 'Payment successful!');
-    }
 
 }

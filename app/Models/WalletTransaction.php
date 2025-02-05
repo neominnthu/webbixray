@@ -3,28 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Crypt;
+
 
 class WalletTransaction extends Model
 {
 
+    protected $fillable = ['wallet_id', 'type', 'amount', 'recipient_wallet_id'];
 
-    protected $fillable = ['user_id', 'amount', 'type', 'description'];
-
-    public function user()
+    public function wallet()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Wallet::class);
     }
 
     // Encrypt the transaction amount before saving
-    public function setAmountAttribute($value)
-    {
-        $this->attributes['amount'] = Crypt::encryptString($value);
-    }
-
-    // Decrypt the transaction amount when retrieving it
-    public function getAmountAttribute($value)
-    {
-        return Crypt::decryptString($value);
-    }
+    protected $casts = [
+        'amount' => 'encrypted', // Automatically encrypt/decrypt the balance
+    ];
 }

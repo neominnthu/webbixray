@@ -11,10 +11,10 @@ class TaskController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tasks = Task::where('status', 'active')->get();
-        return view('tasks.index', compact('tasks'));
+        $tasks = Task::latest()->paginate(10);
+        return view('backend.tasks.index', compact('tasks'))->with('i', ($request->input('page', 1) - 1) * 10);
     }
 
     /**
@@ -22,7 +22,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return view('admin.tasks.create');
+        return view('backend.tasks.create');
     }
 
     /**
@@ -33,17 +33,19 @@ class TaskController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
-            'reward' => 'required|numeric|min:0.01',
+            'reward' => 'required|numeric|min:10',
+            'type'  => 'required'
         ]);
 
         Task::create([
             'title' => $request->title,
             'description' => $request->description,
             'reward' => $request->reward,
+            'type' => $request->type,
             'status' => 'active',
         ]);
 
-        return redirect()->route('admin.tasks.index')->with('success', 'Task created successfully.');
+        return redirect()->route('backend.tasks.index')->with('success', 'Task created successfully.');
     }
 
     /**

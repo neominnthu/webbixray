@@ -55,19 +55,19 @@
 
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link ">
+                    <a href="{{route('transactions.index')}}" class="nav-link ">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>Transaction Lists</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link ">
+                    <a href="{{route('my.wallet')}}" class="nav-link ">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>My Wallet</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link ">
+                    <a href="{{route('my.transaction')}}" class="nav-link ">
                     <i class="nav-icon bi bi-circle"></i>
                     <p>My Transaction</p>
                     </a>
@@ -89,31 +89,29 @@
     </p>
     </a>
     <ul class="nav nav-treeview">
-
-
         <li class="nav-item">
-            <a href="#" class="nav-link ">
+            <a href="{{route('tasks.index')}}" class="nav-link ">
             <i class="nav-icon bi bi-circle"></i>
-            <p>Transaction Lists</p>
+            <p>Task list</p>
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link ">
+            <a href="{{route('tasks.index')}}" class="nav-link ">
             <i class="nav-icon bi bi-circle"></i>
-            <p>My Wallet</p>
+            <p>Leaderboard</p>
             </a>
         </li>
-        <li class="nav-item">
-            <a href="#" class="nav-link ">
-            <i class="nav-icon bi bi-circle"></i>
-            <p>My Transaction</p>
-            </a>
-        </li>
-
-
     </ul>
 </li>
-@endcan
 
+@endcan
+    <li class="nav-item ">
+        <a href="{{route('settings.index')}}" class="nav-link ">
+        <i class="nav-icon bi bi-speedometer"></i>
+        <p>
+            SETTING
+        </p>
+        </a>
+    </li>
 </ul>
 <!--end::Sidebar Menu-->

@@ -61,11 +61,14 @@ class AuthController extends Controller
 
         // Find the user who referred
         $referrer = User::where('referral_code', $request->referral_code)->first();
-
+        if ($referrer && $referrer->id === Auth::id()) {
+            return redirect()->back()->withErrors(['referral_code' => 'You cannot refer yourself.']);
+        }
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'reward_points' => 0,
             'referred_by' => $referrer ? $referrer->id : null,
         ]);
 
@@ -79,6 +82,7 @@ class AuthController extends Controller
             if ($referrer) {
                 $this->rewardReferrer($referrer);
             }
+
 
             Auth::login($user);
 
@@ -96,7 +100,18 @@ class AuthController extends Controller
 
         private function rewardReferrer(User $referrer)
         {
-            $referrer->increment('reward_points', 10); // Example reward
+            $reward = 10;
+            //$referrer->increment('reward_points', 10); // Example reward
+                    // Update user's wallet balance
+        //$user->increment('reward_points', $reward);
+        $currentBalance = $referrer->reward_points;
+
+        // Increment the balance
+        $newBalance = $currentBalance + $reward;
+
+        // Update the balance with the new incremented value (encrypted automatically)
+        $referrer->update(['reward_points' => $newBalance]);
+        $referrer->save;
         }
 
 }

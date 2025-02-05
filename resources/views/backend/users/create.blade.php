@@ -1,5 +1,5 @@
 @extends('backend.layouts.app')
-
+@section('title', 'User list')
     <!-- Custom styles can be add here -->
         @push('custom-styles')
 
