@@ -56,41 +56,13 @@ class User extends Authenticatable implements HasMedia
         ];
     }
 
-    public function wallet()
-    {
-        return $this->hasOne(Wallet::class);
-    }
 
-    public function withdrawalRequests()
-    {
-        return $this->hasMany(WithdrawalRequest::class);
-    }
-
-    public function taskCompletions()
-    {
-        return $this->hasMany(TaskCompletion::class);
-    }
-
-    public function walletTransfersSent()
-    {
-        return $this->hasMany(WalletTransfer::class, 'sender_id');
-    }
-
-    public function walletTransfersReceived()
-    {
-        return $this->hasMany(WalletTransfer::class, 'receiver_id');
-    }
-
-    public function fixedDeposits()
-    {
-        return $this->hasMany(FixedDeposit::class);
-    }
 
     protected static function boot()
     {
         parent::boot();
         static::created(function ($user) {
-            $user->referral_code = Str::random(8);
+            $user->referral_code = Str::random(10);
             $user->save();
         });
     }
@@ -113,7 +85,7 @@ class User extends Authenticatable implements HasMedia
             ->nonQueued();
     }
 
-    protected $casts = [
-        'reward_points' => 'encrypted', // Automatically encrypt/decrypt the balance
-    ];
+
+
+
 }
