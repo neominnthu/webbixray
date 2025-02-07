@@ -28,7 +28,7 @@ class AdminSeeder extends Seeder
 
                 'name' => 'neominnthu',
                 'email' => 'neominnthu@gmail.com',
-                'reward_points' => 0,
+
                 'password' => bcrypt('12345678')
 
             ]);
@@ -37,7 +37,7 @@ class AdminSeeder extends Seeder
 
                 'name' => 'heinthiha',
                 'email' => 'heinthiha@gmail.com',
-                'reward_points' => 0,
+
                 'password' => bcrypt('12345678')
 
             ]);
@@ -46,7 +46,7 @@ class AdminSeeder extends Seeder
 
                 'name' => 'yelinthaw',
                 'email' => 'yelinthaw@gmail.com',
-                'reward_points' => 0,
+
                 'password' => bcrypt('12345678')
 
             ]);
@@ -55,29 +55,12 @@ class AdminSeeder extends Seeder
 
                 'name' => 'kyawclara',
                 'email' => 'kyawtclara@gmail.com',
-                'reward_points' => 0,
+
                 'password' => bcrypt('12345678')
 
             ]);
 
-            // Create a wallet for the new user
-            Wallet::create([
-                'user_id' => $user->id,
-                'balance' => 100000000.00, // Default balance
-            ]);
 
-            Wallet::create([
-                'user_id' => $user2->id,
-                'balance' => 0, // Default balance
-            ]);
-            Wallet::create([
-                'user_id' => $user3->id,
-                'balance' => 0, // Default balance
-            ]);
-            Wallet::create([
-                'user_id' => $user4->id,
-                'balance' => 0, // Default balance
-            ]);
             app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
             $role = Role::create(['name' => 'Super-Admin']);
             $role2 = Role::create(['name' => 'Admin']);

@@ -102,7 +102,7 @@
               <strong><i class="fas fa-pencil-alt mr-1"></i> Wallet Amounts</strong>
 
               <p class="text-muted">
-                <span class="tag tag-danger">{{ number_format((float)Auth::user()->wallet->balance, )}} Ks</span>
+                <span class="tag tag-danger"> Ks</span>
 
               </p>
 

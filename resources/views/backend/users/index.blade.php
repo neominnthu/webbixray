@@ -67,9 +67,9 @@
                                         @endforeach
                                     @endif
                                 </td>
-                                <td>{{ number_format((float)$user->wallet->balance, )}} Ks</td>
+                                <td> Ks</td>
                                 <td><label class="badge bg-success"></label></td>
-                                @role(['Super-Admin','Admin'])
+
                                 <td>
                                     @can('user-list')
                                         <a class="btn btn-info btn-sm" href="{{ route('users.show',$user->id) }}"><i class="fa-solid fa-list"></i> Show</a>
@@ -87,7 +87,7 @@
                                     @endcan
 
                                 </td>
-                                @endrole
+
                             </tr>
                         @endforeach
 

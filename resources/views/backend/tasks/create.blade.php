@@ -37,7 +37,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="taskdescription" class="form-label">Task Description <a href="" class="text-danger">*</a></label>
-                    <input type="text" class="form-control" id="taskdescription" name="description"  />
+                    <textarea type="text" class="form-control" id="taskdescription" name="description"></textarea>
                 </div>
                 <div class="mb-3">
                     <label for="tasktype" class="form-label">Task Type <a href="" class="text-danger">*</a></label>
