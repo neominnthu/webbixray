@@ -19,5 +19,5 @@ use Illuminate\Support\Facades\Route;
 //Auth::routes();
 require __DIR__.'/auth.php';
 require __DIR__.'/backend.php';
-
+require __DIR__.'/module.php';
 

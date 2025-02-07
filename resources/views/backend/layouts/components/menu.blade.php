@@ -1,5 +1,18 @@
 <!--begin::Sidebar Menu-->
 <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
+
+
+    <li class="nav-item ">
+        <a href="{{route('filemanager.index')}}" class="nav-link ">
+        <i class="nav-icon bi bi-speedometer"></i>
+        <p>
+            File manger
+        </p>
+        </a>
+    </li>
+
+
+
 <!--User Management-->
     @can(['user-list', 'role-list', 'permission-list'])
         <li class="nav-item  {{ request()->is('permissions*') || request()->is('roles*') || request()->is('users*')   ? 'menu-open' : '' }}">
@@ -41,70 +54,20 @@
         </li>
     @endcan
 <!--End user Management-->
-<!--Wallet Management-->
-    @can('')
-        <li class="nav-item ">
-            <a href="#" class="nav-link ">
-            <i class="nav-icon bi bi-speedometer"></i>
-            <p>
-                Wallet Management
-                <i class="nav-arrow bi bi-chevron-right"></i>
-            </p>
-            </a>
-            <ul class="nav nav-treeview">
 
 
-                <li class="nav-item">
-                    <a href="{{route('transactions.index')}}" class="nav-link ">
-                    <i class="nav-icon bi bi-circle"></i>
-                    <p>Transaction Lists</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('my.wallet')}}" class="nav-link ">
-                    <i class="nav-icon bi bi-circle"></i>
-                    <p>My Wallet</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('my.transaction')}}" class="nav-link ">
-                    <i class="nav-icon bi bi-circle"></i>
-                    <p>My Transaction</p>
-                    </a>
-                </li>
 
 
-            </ul>
-        </li>
-    @endcan
-<!--End Wallet Management-->
 
-@can('')
-<li class="nav-item ">
-    <a href="#" class="nav-link ">
-    <i class="nav-icon bi bi-speedometer"></i>
-    <p>
-        Tasks Management
-        <i class="nav-arrow bi bi-chevron-right"></i>
-    </p>
-    </a>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="{{route('tasks.index')}}" class="nav-link ">
-            <i class="nav-icon bi bi-circle"></i>
-            <p>Task list</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{route('tasks.index')}}" class="nav-link ">
-            <i class="nav-icon bi bi-circle"></i>
-            <p>Leaderboard</p>
-            </a>
-        </li>
-    </ul>
-</li>
+    <li class="nav-item ">
+        <a href="{{route('modules.index')}}" class="nav-link ">
+        <i class="nav-icon bi bi-speedometer"></i>
+        <p>
+            Modules
+        </p>
+        </a>
+    </li>
 
-@endcan
     <li class="nav-item ">
         <a href="{{route('settings.index')}}" class="nav-link ">
         <i class="nav-icon bi bi-speedometer"></i>
