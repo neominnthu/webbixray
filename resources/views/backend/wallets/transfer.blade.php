@@ -1,5 +1,5 @@
 @extends('backend.layouts.app')
-@section('title', 'Wallet Deposit')
+@section('title', 'Wallet Transfer')
     <!-- Custom styles can be add here -->
         @push('custom-styles')
 
@@ -42,45 +42,33 @@
                             <input type="text" class="form-control" placeholder="{{Auth::user()->email}}" disabled>
                         </div>
                         <div class="form-group col-6">
-                            <label>Ticket Category :</label>
-                            <select name="category" id="" class="form-control">
-                                <option value="deposit" selected disabled>Deposit</option>
-                            </select>
+                            <label>Recipent Name : <danger class="text-danger">*</danger></label>
+                            <input type="text" class="form-control" placeholder="Type Recipent Name" >
                         </div>
                         <div class="form-group col-6">
-                            <label>Subject :<danger class="text-danger">*</danger>  </label>
-                            <input type="text" class="form-control" placeholder="Deposit Request" disabled>
-                        </div>
-
-
-                        <div class="form-group col-12">
-                            <label>Encrypted Message : <danger class="text-danger">*</danger> <p style="font-size: 10px">For confidential data (admin and requested user only can see )</p></label>
-                            <textarea type="text" class="form-control" placeholder=""></textarea>
+                            <label>Recipent Email : <danger class="text-danger">*</danger></label>
+                            <input type="text" class="form-control" placeholder="Type Recipent Email" >
                         </div>
                         <div class="form-group col-6">
-                            <label>Deposit Amount :<danger class="text-danger">*</danger>
+                            <label>Transfer Amount :<danger class="text-danger">*</danger>
                                 <p style="font-size: 10px">Your Wallet balance = {{Auth::user()->wallet->balance}}</p>
                             </label>
-                            <input type="number" class="form-control" placeholder="Type your Amount to deposit">
-                        </div>
-
-                        <div class="form-group col-12">
-                            <label class="">Attachment :<danger class="text-danger">*</danger> <p style="font-size: 10px">Please kindly attach bank slip or transaction proof:</p> </label>
-                            <input type="file" class="form-control" name="attachment">
+                            <input type="number" class="form-control" placeholder="Type your Amount to Transfer">
                         </div>
                 </div>
+
+
+
+        </div>
 
                 <div class="card-footer row">
                         <div class="col-6">
                             <a href="">Reset</a>
                         </div>
                         <div class="col-6 text-end">
-                            <button href="" class="btn btn-outline btn-primary ">Submit Ticket</button>
+                            <button href="" class="btn btn-outline btn-primary ">Transfer Now</button>
                         </div>
                 </div>
-
-
-        </div>
     </div>
 </form>
     @endsection

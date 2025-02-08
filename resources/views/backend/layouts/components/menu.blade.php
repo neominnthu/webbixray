@@ -71,7 +71,52 @@
     @endcan
 <!--End user Management-->
 
+<!--Ticket Management-->
+<li class="nav-item  ">
+    <a href="#" class="nav-link ">
+        <i class="nav-icon bi bi-speedometer"></i>
+        <p>
+            Support Management
+            <i class="nav-arrow bi bi-chevron-right"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{{route('tickets.index')}}" class="nav-link">
+            <i class="nav-icon bi bi-circle"></i>
+            <p>Support Tickets</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{route('tickets.index')}}" class="nav-link">
+            <i class="nav-icon bi bi-circle"></i>
+            <p>My Tickets</p>
+            </a>
+        </li>
+    </ul>
+</li>
 
+<!--Support Management-->
+
+<!--Wallet Management-->
+<li class="nav-item  ">
+    <a href="#" class="nav-link ">
+    <i class="nav-icon bi bi-speedometer"></i>
+    <p>
+        Wallet Management
+        <i class="nav-arrow bi bi-chevron-right"></i>
+    </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{{route('wallets.index')}}" class="nav-link">
+            <i class="nav-icon bi bi-circle"></i>
+            <p>Wallet</p>
+            </a>
+        </li>
+    </ul>
+</li>
+<!--Wallet Management-->
 
 
 

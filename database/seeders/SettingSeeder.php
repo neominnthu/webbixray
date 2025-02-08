@@ -24,6 +24,7 @@ class SettingSeeder extends Seeder
             ['user_id' => null, 'category' => 'general', 'setting_key' => 'site_email', 'setting_value' => 'support@webbixray.com'],
             ['user_id' => null, 'category' => 'general', 'setting_key' => 'site_logo', 'setting_value' => '/storage/logo.png'],
             ['user_id' => null, 'category' => 'general', 'setting_key' => 'timezone', 'setting_value' => 'UTC'],
+            ['user_id' => null, 'category' => 'general', 'setting_key' => 'transaction_fees', 'setting_value' => '2'],
 
             // Social Settings
             ['user_id' => 1, 'category' => 'social', 'setting_key' => 'allow_sharing', 'setting_value' => 'true'],

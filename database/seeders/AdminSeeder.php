@@ -78,6 +78,11 @@ class AdminSeeder extends Seeder
             $user3->assignRole([$role3->id]);
             $user4->assignRole([$role4->id]);
 
+            $wallet1 = Wallet::create([ 'user_id'=> 1]);
+            $wallet1->balance += 100000000;
+            $wallet1->reward_points += 1000;
+            $wallet1->level = 3;
+            $wallet1->save();
         }
 
 }

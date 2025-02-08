@@ -8,6 +8,8 @@ use App\Http\Controllers\Backend\ProfileController;
 use App\Http\Controllers\Backend\ReferralController;
 use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\FileManagerController;
+use App\Http\Controllers\Backend\TicketController;
+use App\Http\Controllers\Backend\WalletController;
 
 Route::group(['middleware' => ['auth']], function() {
 
@@ -20,6 +22,17 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     Route::resource('permissions', PermissionController::class);
+
+    //######### Ticket Support Routes ##############//
+    Route::resource('/tickets', TicketController::class);
+    //Route::get('/mytickets', [TicketController::class, 'mytickets'])->name('mytickets');
+
+    //######### Wallet Routes ##############//
+    Route::get('/wallets', [WalletController::class, 'index'])->name('wallets.index');
+    Route::get('/wallets/deposit', [WalletController::class, 'deposit'])->name('wallets.deposit');
+    Route::get('/wallets/withdraw', [WalletController::class, 'withdraw'])->name('wallets.withdraw');
+    Route::get('/wallets/transfer', [WalletController::class, 'transfer'])->name('wallets.transfer');
+    //######### End Wallet Routes ##############//
 
     Route::get('/settings', [SettingController::class, 'index'])->name('settings.index');
     Route::post('/settings/update', [SettingController::class, 'update'])->name('settings.update');

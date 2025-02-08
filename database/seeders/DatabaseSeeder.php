@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             PermissionSeeder::class,
             AdminSeeder::class,
             SettingSeeder::class,
+            TicketCategorySeeder::class,
             //TaskSeeder::class,
 
         ]);

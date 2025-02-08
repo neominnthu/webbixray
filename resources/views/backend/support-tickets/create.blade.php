@@ -30,8 +30,6 @@
             <a href="{{route('wallets.index')}}" class="btn btn-sm btn-primary"> << Back to Wallet</a>
         </div>
         <div class="card-body">
-
-
                 <div class="row">
                         <div class="form-group col-6">
                             <label>Name : </label>
@@ -44,15 +42,18 @@
                         <div class="form-group col-6">
                             <label>Ticket Category :</label>
                             <select name="category" id="" class="form-control">
-                                <option value="deposit" selected disabled>Deposit</option>
+                                <option value="deposit" selected >Deposit</option>
                             </select>
                         </div>
                         <div class="form-group col-6">
                             <label>Subject :<danger class="text-danger">*</danger>  </label>
-                            <input type="text" class="form-control" placeholder="Deposit Request" disabled>
+                            <input type="text" class="form-control" placeholder="Deposit Request" >
                         </div>
-
-
+                        <div class="form-group col-12">
+                            <label>Message : <danger class="text-danger">*</danger>
+                                <p style="font-size: 10px">Descripe detail of your issue here...</p></label>
+                            <textarea type="text" class="form-control" placeholder=""></textarea>
+                        </div>
                         <div class="form-group col-12">
                             <label>Encrypted Message : <danger class="text-danger">*</danger> <p style="font-size: 10px">For confidential data (admin and requested user only can see )</p></label>
                             <textarea type="text" class="form-control" placeholder=""></textarea>
@@ -70,15 +71,16 @@
                         </div>
                 </div>
 
-                <div class="card-footer row">
-                        <div class="col-6">
-                            <a href="">Reset</a>
-                        </div>
-                        <div class="col-6 text-end">
-                            <button href="" class="btn btn-outline btn-primary ">Submit Ticket</button>
-                        </div>
+        </div>
+        <div class="card-footer">
+            <div class="row">
+                <div class="col-6">
+                    <a href="">Reset</a>
                 </div>
-
+                <div class="col-6 text-end">
+                    <button href="" class="btn btn-outline btn-primary ">Submit Ticket</button>
+                </div>
+            </div>
 
         </div>
     </div>

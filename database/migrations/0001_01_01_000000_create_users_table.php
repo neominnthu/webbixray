@@ -18,8 +18,9 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->integer('user_level')->default(0);
+            $table->enum('badge', ['normal', 'blue', 'green'])->default('normal');
             $table->integer('trusted')->default(0);
-
+            $table->integer('verified')->default(0);
             $table->string('referral_code')->unique()->nullable();
             $table->unsignedBigInteger('referred_by')->nullable();
             $table->foreign('referred_by')->references('id')->on('users')->onDelete('set null');

@@ -24,7 +24,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-12 col-sm-12">
-                    <h2>Wallet Balance: ${{ $wallet->balance ?? '0.00' }}</h2>
+                    <h2>Wallet Balance: {{ Auth::user()->wallet->balance ?? '0.00' }} Ks.</h2>
                 </div>
             </div>
         </div>
@@ -43,7 +43,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="text-center btn-block">
-                                    <a class="btn btn-outline-primary" href="#">Request Deposit</a>
+                                    <a class="btn btn-outline-primary" href="{{route('wallets.deposit')}}">Request Deposit</a>
                                 </div>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="text-center btn-block">
-                                    <button class="btn btn-outline-primary " type="submit">Request Withdraw</button>
+                                    <a class="btn btn-outline-primary " href="{{route('wallets.withdraw')}}">Request Withdraw</a>
                                 </div>
                             </div>
                         </div>
@@ -79,7 +79,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="text-center btn-block">
-                                    <button class="btn btn-outline-primary " type="submit">Transfer</button>
+                                    <a class="btn btn-outline-primary " href="{{route('wallets.transfer')}}">Transfer</a>
                                 </div>
                             </div>
                         </div>
