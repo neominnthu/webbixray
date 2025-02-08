@@ -1,3 +1,9 @@
 {
-    "Wallet": true
+    "Wallet": true,
+    "Blog": true,
+    "CustomerSupport": true,
+    "Shop": true,
+    "Invoicing": true,
+    "Theme": true,
+    "TaskManagement": true
 }

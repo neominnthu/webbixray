@@ -6,9 +6,13 @@ namespace App\Helpers;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Auth;
+use Nwidart\Modules\Facades\Module;
 
 class SettingHelper
 {
+
+
+
     /**
      * Get a user setting.
      *
@@ -55,4 +59,10 @@ class SettingHelper
 
 
 
+}
+
+if (!function_exists('isModuleEnabled')) {
+    function isModuleEnabled($moduleName) {
+        return Module::isEnabled($moduleName);
+    }
 }

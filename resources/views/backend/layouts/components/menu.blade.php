@@ -1,3 +1,7 @@
+@php
+    use Nwidart\Modules\Facades\Module;
+@endphp
+
 <!--begin::Sidebar Menu-->
 <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
 
@@ -11,6 +15,18 @@
         </a>
     </li>
 
+
+    @foreach(Module::allEnabled() as $module)
+    <li class="nav-item ">
+        <a href="{{ route(strtolower($module->getName()) . '.index') }}" class="nav-link ">
+        <i class="nav-icon bi bi-speedometer"></i>
+        <p>
+            {{ $module->getName() }}
+        </p>
+        </a>
+    </li>
+
+    @endforeach
 
 
 <!--User Management-->
@@ -69,7 +85,7 @@
     </li>
 
     <li class="nav-item ">
-        <a href="{{route('settings.index')}}" class="nav-link ">
+        <a href="{{route('settings.index')}}" class="nav-link {{request()->is('settings*')  ? 'active' : '' }}">
         <i class="nav-icon bi bi-speedometer"></i>
         <p>
             SETTING
