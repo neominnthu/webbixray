@@ -72,7 +72,7 @@
 <!--End user Management-->
 
 <!--Ticket Management-->
-<li class="nav-item  ">
+<li class="nav-item  {{ request()->is('tickets*')  ? 'menu-open' : '' }}">
     <a href="#" class="nav-link ">
         <i class="nav-icon bi bi-speedometer"></i>
         <p>
@@ -82,13 +82,13 @@
     </a>
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="{{route('tickets.index')}}" class="nav-link">
+            <a href="{{route('tickets.index')}}" class="nav-link {{request()->is('rickets*')  ? 'active' : '' }}">
             <i class="nav-icon bi bi-circle"></i>
             <p>Support Tickets</p>
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{route('tickets.index')}}" class="nav-link">
+            <a href="{{route('tickets.mytickets')}}" class="nav-link {{request()->is('tickets.mytickets')  ? 'active' : '' }}">
             <i class="nav-icon bi bi-circle"></i>
             <p>My Tickets</p>
             </a>
@@ -109,7 +109,7 @@
     </a>
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="{{route('wallets.index')}}" class="nav-link">
+            <a href="{{route('wallets.index')}}" class="nav-link {{request()->is('wallets*')  ? 'active' : '' }}">
             <i class="nav-icon bi bi-circle"></i>
             <p>Wallet</p>
             </a>
@@ -118,10 +118,28 @@
 </li>
 <!--Wallet Management-->
 
-
+<!--Task Management-->
+<li class="nav-item  ">
+    <a href="#" class="nav-link ">
+    <i class="nav-icon bi bi-speedometer"></i>
+    <p>
+        Task Management
+        <i class="nav-arrow bi bi-chevron-right"></i>
+    </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{{route('tasks.index')}}" class="nav-link {{request()->is('tasks*')  ? 'active' : '' }}">
+            <i class="nav-icon bi bi-circle"></i>
+            <p>Taks</p>
+            </a>
+        </li>
+    </ul>
+</li>
+<!--Task Management-->
 
     <li class="nav-item ">
-        <a href="{{route('modules.index')}}" class="nav-link ">
+        <a href="{{route('modules.index')}}" class="nav-link {{request()->is('modules*')  ? 'active' : '' }}">
         <i class="nav-icon bi bi-speedometer"></i>
         <p>
             Modules

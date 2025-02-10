@@ -59,7 +59,7 @@
 
 
                             <td>
-                                <a class="btn btn-info btn-sm" href="{{ route('roles.show',$role->id) }}"><i class="fa-solid fa-list"></i> Show</a>
+
                                 <a class="btn btn-primary btn-sm" href="{{ route('roles.edit',$role->id) }}"><i class="fa-solid fa-pen-to-square"></i> Edit</a>
                                  <form method="POST" action="{{ route('roles.destroy',$role->id) }}" style="display:inline">
                                      @csrf

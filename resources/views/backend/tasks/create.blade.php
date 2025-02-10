@@ -50,7 +50,7 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <label for="reward" class="form-label">Reward<a href="" class="text-danger">*</a></label>
+                    <label for="reward" class="form-label">Reward<danger class="text-danger">*</danger> (Points)</label>
                     <input type="number" class="form-control" id="reward" name="reward"  />
                 </div>
                 <div class="mb-3">

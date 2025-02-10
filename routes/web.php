@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
+Route::view('/', 'frontend.home');
 
 //Auth::routes();
 require __DIR__.'/auth.php';

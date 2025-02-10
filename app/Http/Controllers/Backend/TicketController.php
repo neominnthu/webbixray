@@ -33,7 +33,7 @@ class TicketController extends Controller
     public function mytickets()
     {
         //Show Admin Role Only With
-        $tickets = Ticket::where('user_id', Auth::user()->id)->all();
-        return view('backend.support-tickets.index', compact('tickets'));
+        $tickets = Ticket::where('user_id', Auth::user()->id)->get();
+        return view('backend.support-tickets.mytickets', compact('tickets'));
     }
 }

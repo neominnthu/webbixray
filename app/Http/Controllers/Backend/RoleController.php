@@ -60,24 +60,14 @@ class RoleController extends Controller
 
         $role = Role::create(['name' => $request->input('name')]);
         $role->syncPermissions($request->input('permission'));
-        return redirect()->route('roles.index')->Sweetalert::success('Role has Been Created', 'Success');
+        return redirect()->route('roles.index')->with('Success','Role has Been Created');
 
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($id): View
 
-    {
-
-        $role = Role::find($id);
-        $rolePermissions = Permission::join("role_has_permissions","role_has_permissions.permission_id","=","permissions.id")
-            ->where("role_has_permissions.role_id",$id)
-            ->get();
-        return view('roles.show',compact('role','rolePermissions'));
-
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -124,6 +114,6 @@ class RoleController extends Controller
     public function destroy(string $id)
     {
         DB::table("roles")->where('id',$id)->delete();
-        return redirect()->route('roles.index')->Sweetalert::success('Role has Been Deleted', 'Success');
+        return redirect()->route('roles.index')->with('success','Role has Been Deleted');
     }
 }

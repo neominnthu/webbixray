@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             SettingSeeder::class,
             TicketCategorySeeder::class,
-            //TaskSeeder::class,
+            TaskSeeder::class,
 
         ]);
     }

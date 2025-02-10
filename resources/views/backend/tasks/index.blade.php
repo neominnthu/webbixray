@@ -29,14 +29,6 @@
                     <div class="col-6 col-sm-6">
                         <a href="{{route('tasks.create')}}" class="btn btn-primary btn-sm"> + Add New Task</a>
                     </div>
-                    <div class="col-6 col-sm-6">
-                        <div class="float-end m-0" >
-                            <a href=""> Export </a> &nbsp
-                            <a href=""> Import </a>
-                        </div>
-
-                    </div>
-
                 </div>
 
             </div>
@@ -45,23 +37,23 @@
                 <table class="table table-bordered table-responsive">
                     <thead>
                         <tr>
-                            <th style=""></th>
+                            <th style="">No</th>
                             <th style="">Title</th>
                             <th style="">Description</th>
-                            <th style="">Type</th>
-                            <th style="">reward</th>
                             <th style="">Status</th>
+                            <th style="">Points</th>
+                            <th style="">Type</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tasks as $key=>$data)
+                        @foreach ($tasks as $task)
                         <tr>
-                            <td>{{ ++$i }}</td>
-                            <td>{{$data->title}}</td>
-                            <td>{{$data->description}}</td>
-                            <td>{{$data->type}}</td>
-                            <td>{{$data->reward}}</td>
-                            <td>{{$data->status}}</td>
+                            <td></td>
+                            <td>{{$task->title}}</td>
+                            <td>{{$task->description}}</td>
+                            <td>{{$task->status}}</td>
+                            <td>{{$task->points}}</td>
+                            <td>{{$task->type}}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -69,7 +61,7 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer clearfix">
-                {{ $tasks->links() }}
+
             </div>
         </div>
 
